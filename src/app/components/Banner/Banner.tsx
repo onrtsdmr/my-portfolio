@@ -43,7 +43,7 @@ const Banner = () => {
     return (
         <section id="about" className="min-h-screen flex items-center relative bg-white dark:bg-black py-20">
             <div className="absolute right-[-50%] w-full h-full rounded-full bg-[radial-gradient(circle_at_center,rgba(147,51,234,0.3),transparent_70%)] dark:bg-[radial-gradient(circle_at_center,rgba(249,115,22,0.3),transparent_70%)] hidden md:block" />
-            <div className="absolute z-50 bottom-[-50%] left-[-10%] -translate-x-1/2 w-full h-full rounded-full bg-[radial-gradient(circle_at_center,rgba(147,51,234,0.3),transparent_70%)] dark:bg-[radial-gradient(circle_at_center,rgba(249,115,22,0.3),transparent_70%)] hidden md:block" />
+            <div className="absolute bottom-[-50%] left-[-10%] -translate-x-1/2 w-full h-full rounded-full bg-[radial-gradient(circle_at_center,rgba(147,51,234,0.3),transparent_70%)] dark:bg-[radial-gradient(circle_at_center,rgba(249,115,22,0.3),transparent_70%)] hidden md:block" />
 
 
             <div className="max-w-screen mx-auto px-4 grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
