@@ -9,7 +9,7 @@ interface FormData {
     name: string;
     email: string;
     message: string;
-    recaptchaToken?: string;
+    // recaptchaToken?: string;
 }
 
 const Contact = () => {
@@ -21,7 +21,7 @@ const Contact = () => {
 
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [submitStatus, setSubmitStatus] = useState<'success' | 'error' | null>(null);
-    const [recaptchaToken, setRecaptchaToken] = useState<string | null>(null);
+    // const [recaptchaToken, setRecaptchaToken] = useState<string | null>(null);
 
     const formControls = {
         initial: { y: 20, opacity: 0 },
@@ -49,10 +49,10 @@ const Contact = () => {
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        if (!recaptchaToken) {
-            alert('Lütfen reCAPTCHA doğrulamasını tamamlayın.');
-            return;
-        }
+        // if (!recaptchaToken) {
+        //     alert('Lütfen reCAPTCHA doğrulamasını tamamlayın.');
+        //     return;
+        // }
 
         setIsSubmitting(true);
         setSubmitStatus(null);
@@ -65,7 +65,7 @@ const Contact = () => {
                 },
                 body: JSON.stringify({
                     ...formData,
-                    recaptchaToken
+                    // recaptchaToken
                 }),
             });
 
@@ -73,7 +73,7 @@ const Contact = () => {
             
             setSubmitStatus('success');
             setFormData({ name: '', email: '', message: '' });
-            setRecaptchaToken(null);
+            // setRecaptchaToken(null);
         } catch (err) {
             setSubmitStatus('error');
             console.error('Contact form error:', err);
@@ -162,10 +162,10 @@ const Contact = () => {
                             </div>
 
                             <div className="flex justify-center">
-                                <ReCAPTCHA
+                                {/* <ReCAPTCHA
                                     sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY!}
                                     onChange={(token) => setRecaptchaToken(token)}
-                                />
+                                /> */}
                             </div>
 
                             <motion.button
@@ -173,7 +173,7 @@ const Contact = () => {
                                 whileHover="hover"
                                 whileTap="tap"
                                 type="submit"
-                                disabled={isSubmitting || !recaptchaToken}
+                                disabled={isSubmitting}
                                 className="w-full py-4 px-6 rounded-lg text-white font-medium flex items-center justify-center gap-2 bg-gradient-to-r from-purple-600 to-purple-800 dark:from-orange-400 dark:to-orange-600 hover:from-purple-700 hover:to-purple-900 dark:hover:from-orange-500 dark:hover:to-orange-700 transition-all duration-300 disabled:opacity-50"
                             >
                                 <FaPaperPlane className={`${isSubmitting ? 'animate-bounce' : ''}`} />
