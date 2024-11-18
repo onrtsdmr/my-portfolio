@@ -8,13 +8,11 @@ const Navbar = () => {
     const [activeSection, setActiveSection] = useState('about');
 
     useEffect(() => {
-        // Scroll olaylarını dinle
         Events.scrollEvent.register('begin', (to) => {
             setActiveSection(to);
         });
 
         return () => {
-            // Component unmount olduğunda event listener'ları temizle
             Events.scrollEvent.remove('begin');
         };
     }, []);
@@ -26,7 +24,6 @@ const Navbar = () => {
         { id: 'contact', label: 'İletişim' }
     ];
 
-    // Scroll animasyonu ekleyelim
     const navVariants = {
         hidden: { y: -100 },
         visible: {
@@ -35,7 +32,7 @@ const Navbar = () => {
                 type: "spring",
                 stiffness: 100,
                 damping: 20,
-                delay: 3 // Loading sonrası
+                delay: 3
             }
         }
     };

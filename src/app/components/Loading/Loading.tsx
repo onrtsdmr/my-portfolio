@@ -25,7 +25,6 @@ const Loading = () => {
                     transition={{ duration: 0.5 }}
                     className="fixed inset-0 z-50 bg-white dark:bg-black"
                 >
-                    {/* Ana resim animasyonu */}
                     <div className="fixed inset-0 flex items-center justify-center">
                         <motion.div
                             initial={{ 
@@ -42,12 +41,12 @@ const Loading = () => {
                         >
                             <motion.div
                                 animate={{ 
-                                    x: "calc(50vw - 192px - 1rem)", // Sağa doğru hareket (2rem padding + 1rem boşluk için)
+                                    x: "calc(50vw - 192px - 1rem)",
                                     y: 0
                                 }}
                                 transition={{
                                     duration: 1,
-                                    delay: 1, // İlk animasyondan sonra başla
+                                    delay: 1,
                                     ease: "easeInOut"
                                 }}
                             >
@@ -62,8 +61,6 @@ const Loading = () => {
                             </motion.div>
                         </motion.div>
                     </div>
-
-                    {/* Loading Bar */}
                     <div className="fixed bottom-8 left-0 w-full">
                         <motion.div
                             initial={{ scaleX: 0 }}

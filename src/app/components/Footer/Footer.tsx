@@ -64,7 +64,6 @@ const Footer = () => {
                 viewport={{ once: true }}
             >
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
-                    {/* Sol Kısım - Logo ve Açıklama */}
                     <motion.div variants={itemVariants} className="space-y-4">
                         <h3 className="text-2xl font-bold bg-gradient-to-r from-purple-600 to-purple-800 dark:from-orange-400 dark:to-orange-600 text-transparent bg-clip-text">
                             Onur TAŞDEMİR
@@ -73,8 +72,6 @@ const Footer = () => {
                             Full Stack Developer olarak web ve mobil uygulama geliştirme konusunda deneyimli.
                         </p>
                     </motion.div>
-
-                    {/* Orta Kısım - Hızlı Linkler */}
                     <motion.div variants={itemVariants}>
                         <h3 className="text-lg font-semibold text-gray-800 dark:text-white mb-6">
                             Hızlı Linkler
@@ -101,8 +98,6 @@ const Footer = () => {
                             ))}
                         </ul>
                     </motion.div>
-
-                    {/* Sağ Kısım - Sosyal Medya */}
                     <motion.div variants={itemVariants}>
                         <h3 className="text-lg font-semibold text-gray-800 dark:text-white mb-6">
                             Sosyal Medya
@@ -124,8 +119,6 @@ const Footer = () => {
                         </div>
                     </motion.div>
                 </div>
-
-                {/* Alt Kısım - Copyright */}
                 <div className="mt-8 md:mt-16 pt-8 border-t border-gray-100 dark:border-gray-800 text-center md:text-left">
                     <div className="flex flex-col md:flex-row justify-between items-center gap-4">
                         <p className="text-gray-600 dark:text-gray-400 text-center md:text-left">

@@ -17,12 +17,11 @@ const projects: ProjectType[] = [
     {
         title: "Portfolio Website",
         description: "Kişisel portfolyo websitesi. Next.js, TypeScript ve Tailwind CSS kullanılarak geliştirildi.",
-        image: "/projects/portfolio.png", // projenizin ekran görüntüsü
+        image: "/projects/portfolio.png",
         technologies: ["Next.js", "TypeScript", "Tailwind CSS", "Framer Motion"],
         githubLink: "https://github.com/yourusername/portfolio",
         liveLink: "https://yourportfolio.com"
     },
-    // Diğer projelerinizi buraya ekleyin
 ];
 
 const Projects = () => {
@@ -52,7 +51,6 @@ const Projects = () => {
                             transition={{ duration: 0.5, delay: index * 0.2 }}
                             className="bg-white dark:bg-black rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 dark:border-gray-800 overflow-hidden"
                         >
-                            {/* Proje Resmi */}
                             <div className="relative h-48 w-full overflow-hidden">
                                 <Image
                                     src={project.image}
@@ -61,8 +59,6 @@ const Projects = () => {
                                     className="object-cover transition-transform duration-300 hover:scale-110"
                                 />
                             </div>
-
-                            {/* Proje Detayları */}
                             <div className="p-4 md:p-6">
                                 <h3 className="text-2xl font-bold text-purple-600 dark:text-orange-500 mb-2">
                                     {project.title}
@@ -71,7 +67,6 @@ const Projects = () => {
                                     {project.description}
                                 </p>
 
-                                {/* Teknolojiler */}
                                 <div className="flex flex-wrap gap-1 md:gap-2 mb-4">
                                     {project.technologies.map((tech, i) => (
                                         <span
@@ -82,8 +77,6 @@ const Projects = () => {
                                         </span>
                                     ))}
                                 </div>
-
-                                {/* Linkler */}
                                 <div className="flex gap-4">
                                     {project.githubLink && (
                                         <a

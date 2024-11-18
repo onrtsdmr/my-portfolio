@@ -47,7 +47,6 @@ const Banner = () => {
 
 
             <div className="max-w-screen mx-auto px-4 grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
-                {/* Sol Taraf - Metin İçeriği */}
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -92,8 +91,6 @@ const Banner = () => {
                         </a>
                     </div>
                 </motion.div>
-
-                {/* Sağ Taraf - Profil Resmi */}
                 <motion.div className="relative w-full flex justify-center md:justify-end items-center">
                     <div className="relative w-[280px] h-[280px] md:w-[384px] md:h-[384px]">
                         <Image
@@ -106,8 +103,6 @@ const Banner = () => {
                     </div>
                 </motion.div>
             </div>
-
-            {/* Scroll İndikatörü */}
             <motion.div
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}

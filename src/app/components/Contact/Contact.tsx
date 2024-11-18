@@ -74,8 +74,9 @@ const Contact = () => {
             setSubmitStatus('success');
             setFormData({ name: '', email: '', message: '' });
             setRecaptchaToken(null);
-        } catch (error) {
+        } catch (err) {
             setSubmitStatus('error');
+            console.error('Contact form error:', err);
         } finally {
             setIsSubmitting(false);
         }

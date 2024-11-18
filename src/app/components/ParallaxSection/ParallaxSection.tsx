@@ -11,7 +11,6 @@ const ParallaxSection = () => {
             style={{ y }}
             className="parallax-element"
         >
-            {/* İçerik */}
         </motion.div>
     );
 };

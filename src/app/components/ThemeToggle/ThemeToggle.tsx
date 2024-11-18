@@ -47,13 +47,10 @@ const ThemeToggle = () => {
                 pseudoElement: '::view-transition-new(root)',
             }
         );
-
-        // Tema durumu localStorage'a kaydediliyor
         localStorage.setItem('theme', nextMode ? 'dark' : 'light');
     };
 
     useEffect(() => {
-        // İlk yüklemede localStorage'daki tema tercihine göre ayar yapılıyor
         const savedTheme = localStorage.getItem('theme');
         if (savedTheme === 'dark') {
             setIsDarkMode(true);

@@ -33,8 +33,8 @@ const CustomCursor = () => {
 
     const variants = {
         default: {
-            x: mousePosition.x - 12,  // Halkanın yarı genişliği
-            y: mousePosition.y - 12,  // Halkanın yarı yüksekliği
+            x: mousePosition.x - 12,  
+            y: mousePosition.y - 12,
             scale: 1
         },
         hover: {
@@ -46,8 +46,8 @@ const CustomCursor = () => {
 
     const dotVariants = {
         default: {
-            x: mousePosition.x - 4,  // Noktanın yarı genişliği
-            y: mousePosition.y - 4,  // Noktanın yarı yüksekliği
+            x: mousePosition.x - 4,
+            y: mousePosition.y - 4,
             scale: 1
         },
         hover: {

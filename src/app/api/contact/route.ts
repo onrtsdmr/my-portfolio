@@ -2,13 +2,11 @@ import { NextResponse } from 'next/server';
 import nodemailer from 'nodemailer';
 import rateLimit from 'express-rate-limit';
 
-// Rate limiter ayarları
 const limiter = rateLimit({
-    windowMs: 15 * 60 * 1000, // 15 dakika
-    max: 5 // IP başına maksimum istek
+    windowMs: 15 * 60 * 1000,
+    max: 5
 });
 
-// reCAPTCHA doğrulama fonksiyonu
 async function verifyRecaptcha(token: string) {
     const response = await fetch('https://www.google.com/recaptcha/api/siteverify', {
         method: 'POST',
@@ -27,7 +25,6 @@ export async function POST(req: Request) {
         const body = await req.json();
         const { name, email, message, recaptchaToken } = body;
 
-        // reCAPTCHA doğrulama
         const isRecaptchaValid = await verifyRecaptcha(recaptchaToken);
         if (!isRecaptchaValid) {
             return NextResponse.json(
@@ -36,7 +33,6 @@ export async function POST(req: Request) {
             );
         }
 
-        // Email gönderme işlemi
         const transporter = nodemailer.createTransport({
             host: process.env.SMTP_HOST,
             port: Number(process.env.SMTP_PORT),

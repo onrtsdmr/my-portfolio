@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from "framer-motion";
-import { FaBuilding, FaMapMarkerAlt, FaRegCalendarAlt } from 'react-icons/fa'; // react-icons kullanıyoruz
+import { FaBuilding, FaMapMarkerAlt, FaRegCalendarAlt } from 'react-icons/fa';
 
 interface TimelineItem {
     title: string;
@@ -66,7 +66,6 @@ const timelineData: TimelineItem[] = [
 ];
 
 const Timeline = () => {
-    // Kart hover efektlerini geliştirelim
     const cardVariants = {
         hover: {
             scale: 1.02,
@@ -96,7 +95,6 @@ const Timeline = () => {
                 </p>
 
                 <div className="relative">
-                    {/* Timeline çizgisi - Gradient kaldırıldı, düz renkler eklendi */}
                     <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-purple-600 dark:bg-orange-500 rounded-full" />
 
                     {timelineData.map((item, index) => (
@@ -106,30 +104,65 @@ const Timeline = () => {
                             whileInView={{ opacity: 1, x: 0 }}
                             viewport={{ once: true }}
                             transition={{ duration: 0.5, delay: index * 0.2 }}
-                            className="relative flex flex-col md:flex-row items-center justify-between mb-16"
+                            className={`relative flex flex-col md:flex-row items-center justify-between mb-16`}
                         >
-                            {/* Timeline nokta ve animasyon halkası */}
                             <div className="absolute left-1/2 transform -translate-x-1/2 flex items-center justify-center">
                                 <div className="w-8 h-8 bg-white dark:bg-black rounded-full border-4 border-purple-600 dark:border-orange-500 z-10" />
                                 <div className="absolute w-12 h-12 bg-purple-200 dark:bg-orange-200 rounded-full animate-ping opacity-20" />
                             </div>
+                            <div className={`w-full md:w-5/12 ${index % 2 === 0 ? 'md:pr-12' : 'md:pl-12'}`}>
+                                <motion.div
+                                    variants={cardVariants}
+                                    whileHover="hover"
+                                    className="timeline-card"
+                                >
+                                    <div className="bg-white dark:bg-black p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 border border-gray-100 dark:border-gray-800">
+                                        <div className="flex flex-col gap-4">
+                                            <div className="space-y-2">
+                                                <h3 className="text-2xl font-bold text-purple-600 dark:text-orange-500">
+                                                    {item.title}
+                                                </h3>
+                                                <div className="flex items-center gap-2 text-gray-600 dark:text-gray-400">
+                                                    <FaBuilding className="w-4 h-4" />
+                                                    <span className="font-medium">{item.company}</span>
+                                                </div>
+                                                <div className="flex items-center gap-2 text-gray-500 dark:text-gray-500">
+                                                    <FaMapMarkerAlt className="w-4 h-4" />
+                                                    <span>{item.location}</span>
+                                                </div>
+                                                <div className="flex items-center gap-2 text-gray-500 dark:text-gray-500">
+                                                    <FaRegCalendarAlt className="w-4 h-4" />
+                                                    <span>{item.period} · {item.duration}</span>
+                                                </div>
+                                            </div>
 
-                            {/* İçerik kartı - Tek bir div içinde conditional rendering yapalım */}
-                            {index % 2 === 0 ? (
-                                <>
-                                    <div className="w-full md:w-5/12 md:pr-12">
-                                        <TimelineCard item={item} cardVariants={cardVariants} />
+                                            <div className="border-t border-gray-100 dark:border-gray-800 pt-4">
+                                                <p className="text-gray-600 dark:text-gray-300 mb-4 italic">
+                                                    &quot;{item.description}"
+                                                </p>
+                                                
+                                                <div className="space-y-3">
+                                                    <h4 className="font-semibold text-gray-800 dark:text-gray-200">
+                                                        Öne Çıkan Başarılar
+                                                    </h4>
+                                                    <ul className="space-y-2">
+                                                        {item.accomplishments.map((accomplishment, i) => (
+                                                            <li key={i} className="flex items-start gap-2">
+                                                                <span className="mt-1.5 w-1.5 h-1.5 bg-purple-600 dark:bg-orange-500 rounded-full flex-shrink-0" />
+                                                                <span className="text-sm text-gray-600 dark:text-gray-400">
+                                                                    {accomplishment}
+                                                                </span>
+                                                            </li>
+                                                        ))}
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div className="hidden md:block w-5/12" />
-                                </>
-                            ) : (
-                                <>
-                                    <div className="hidden md:block w-5/12" />
-                                    <div className="w-full md:w-5/12 md:pl-12">
-                                        <TimelineCard item={item} cardVariants={cardVariants} />
-                                    </div>
-                                </>
-                            )}
+                                </motion.div>
+                            </div>
+                            
+                            <div className="w-5/12" />
                         </motion.div>
                     ))}
                 </div>
@@ -137,58 +170,5 @@ const Timeline = () => {
         </section>
     );
 };
-
-// TimelineCard bileşenini ayrı bir component olarak çıkaralım
-const TimelineCard = ({ item, cardVariants }: { item: TimelineItem, cardVariants: any }) => (
-    <motion.div
-        variants={cardVariants}
-        whileHover="hover"
-        className="timeline-card"
-    >
-        <div className="bg-white dark:bg-black p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 border border-gray-100 dark:border-gray-800">
-            <div className="flex flex-col gap-4">
-                <div className="space-y-2">
-                    <h3 className="text-2xl font-bold text-purple-600 dark:text-orange-500">
-                        {item.title}
-                    </h3>
-                    <div className="flex items-center gap-2 text-gray-600 dark:text-gray-400">
-                        <FaBuilding className="w-4 h-4" />
-                        <span className="font-medium">{item.company}</span>
-                    </div>
-                    <div className="flex items-center gap-2 text-gray-500 dark:text-gray-500">
-                        <FaMapMarkerAlt className="w-4 h-4" />
-                        <span>{item.location}</span>
-                    </div>
-                    <div className="flex items-center gap-2 text-gray-500 dark:text-gray-500">
-                        <FaRegCalendarAlt className="w-4 h-4" />
-                        <span>{item.period} · {item.duration}</span>
-                    </div>
-                </div>
-
-                <div className="border-t border-gray-100 dark:border-gray-800 pt-4">
-                    <p className="text-gray-600 dark:text-gray-300 mb-4 italic">
-                        "{item.description}"
-                    </p>
-                    
-                    <div className="space-y-3">
-                        <h4 className="font-semibold text-gray-800 dark:text-gray-200">
-                            Öne Çıkan Başarılar
-                        </h4>
-                        <ul className="space-y-2">
-                            {item.accomplishments.map((accomplishment, i) => (
-                                <li key={i} className="flex items-start gap-2">
-                                    <span className="mt-1.5 w-1.5 h-1.5 bg-purple-600 dark:bg-orange-500 rounded-full flex-shrink-0" />
-                                    <span className="text-sm text-gray-600 dark:text-gray-400">
-                                        {accomplishment}
-                                    </span>
-                                </li>
-                            ))}
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </motion.div>
-);
 
 export default Timeline;
