@@ -1,78 +1,128 @@
 'use client';
 
-import React from 'react';
+import { motion } from "framer-motion";
+import Image from "next/image";
+import { Link } from "react-scroll";
+import { FaMouse } from 'react-icons/fa';
 import profilePic from '@/app/assets/images/profile_pic.png';
+import { useEffect, useState } from 'react';
 
-const Banner: React.FC = () => {
-    // Metni harf harf ayırıyoruz, boşlukları da dâhil ediyoruz
-    const nameArray = "Onur TAŞDEMİR".split("");
+const Banner = () => {
+    const [text, setText] = useState("");
+    const [isTypingComplete, setIsTypingComplete] = useState(false);
+    const [startTyping, setStartTyping] = useState(false);
+    const fullText = "Onur TAŞDEMİR";
+
+    useEffect(() => {
+        const startDelay = setTimeout(() => {
+            setStartTyping(true);
+        }, 2500);
+
+        return () => clearTimeout(startDelay);
+    }, []);
+
+    useEffect(() => {
+        if (!startTyping) return;
+
+        let currentIndex = 0;
+        setText("");
+
+        const typingInterval = setInterval(() => {
+            if (currentIndex < fullText.length) {
+                setText(fullText.slice(0, currentIndex + 1));
+                currentIndex++;
+            } else {
+                clearInterval(typingInterval);
+                setIsTypingComplete(true);
+            }
+        }, 100);
+
+        return () => clearInterval(typingInterval);
+    }, [startTyping]);
 
     return (
-        <section className="w-full relative flex items-center justify-between h-screen bg-white dark:bg-black px-4">
-            {/* Üstteki dairesel gradient (Light ve Dark moda göre ayarlanmış) */}
-            <div
-                className="absolute top-[-80%] left-1/2 transform -translate-x-1/2 w-[80vw] h-[80vw] rounded-full z-10 overflow-hidden dark:hidden"
-                style={{
-                    background: "radial-gradient(circle, rgba(128,0,128,0.4) 0%, rgba(255,255,255,0) 60%)",
-                }}
-            ></div>
-            <div
-                className="absolute top-[-80%] left-1/2 transform -translate-x-1/2 w-[80vw] h-[80vw] rounded-full z-10 overflow-hidden hidden dark:block"
-                style={{
-                    background: "radial-gradient(circle, rgba(255,165,0,0.4) 0%, rgba(0,0,0,0) 60%)",
-                }}
-            ></div>
+        <section id="about" className="min-h-screen flex items-center relative bg-white dark:bg-black py-20">
+            <div className="absolute right-[-50%] w-full h-full rounded-full bg-[radial-gradient(circle_at_center,rgba(147,51,234,0.3),transparent_70%)] dark:bg-[radial-gradient(circle_at_center,rgba(249,115,22,0.3),transparent_70%)] hidden md:block" />
+            <div className="absolute z-50 bottom-[-50%] left-[-10%] -translate-x-1/2 w-full h-full rounded-full bg-[radial-gradient(circle_at_center,rgba(147,51,234,0.3),transparent_70%)] dark:bg-[radial-gradient(circle_at_center,rgba(249,115,22,0.3),transparent_70%)] hidden md:block" />
 
-            {/* Sol alttaki dairesel gradient (Light ve Dark moda göre ayarlanmış) */}
-            <div
-                className="absolute left-[-50%] bottom-[-50%] w-[80vw] h-[80vw] rounded-full z-10 overflow-hidden dark:hidden"
-                style={{
-                    background: "radial-gradient(circle, rgba(128,0,128,0.4) 0%, rgba(255,255,255,0) 60%)",
-                }}
-            ></div>
-            <div
-                className="absolute left-[-50%] bottom-[-50%] w-[80vw] h-[80vw] rounded-full z-10 overflow-hidden hidden dark:block"
-                style={{
-                    background: "radial-gradient(circle, rgba(255,165,0,0.4) 0%, rgba(0,0,0,0) 60%)",
-                }}
-            ></div>
 
-            {/* Metin ve içerik kısmı */}
-            <div className="text-left text-black dark:text-white w-1/2 z-20 px-8">
-                <h1 className="text-2xl md:text-5xl font-bold mb-4">
-                    Hello, I'm{" "}
-                    <span className="text-purple-700 dark:text-orange-400">
-                        {nameArray.map((char, index) => (
-                            <span
-                                key={index}
-                                className="inline-block opacity-0 animate-fade-in"
-                                style={{ animationDelay: `${index * 0.1}s` }}
-                            >
-                                {char === " " ? "\u00A0" : char}
+            <div className="max-w-screen mx-auto px-4 grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
+                {/* Sol Taraf - Metin İçeriği */}
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: 0.2 }}
+                    className="space-y-6 px-4 md:px-12 text-center md:text-left"
+                >
+                    <h1 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white">
+                        Merhaba, Ben{" "}
+                        <span className="bg-gradient-to-r from-purple-600 to-purple-800 dark:from-orange-400 dark:to-orange-600 text-transparent bg-clip-text inline-flex">
+                            {text}
+                            <span className={`w-[2px] -mb-1 inline-block animate-blink ml-1 ${isTypingComplete ? 'bg-purple-600 dark:bg-orange-500' : 'bg-gray-900 dark:bg-white'
+                                }`}>
+                                &nbsp;
                             </span>
-                        ))}
-                        {/* Yanıp sönen imleç */}
-                        <span
-                            className="inline-block bg-purple-700 dark:bg-orange-400 w-[2px] h-9 ml-1 align-middle animate-blink"
-                            style={{ animationDelay: `${nameArray.length * 0.1}s` }}
-                        ></span>
-                    </span>
-                </h1>
-                <p className="text-lg md:text-2xl font-light text-gray-500 dark:text-gray-300">
-                    Yazılım dünyasında deneyim kazanmış, yeniliklere ve öğrenmeye açık bir
-                    Full Stack Developer'ım. Web ve mobil uygulama geliştirme alanında güçlü
-                    becerilere sahibim.
-                </p>
+                        </span>
+                    </h1>
+
+                    <h2 className="text-2xl md:text-3xl text-gray-700 dark:text-gray-300">
+                        Full Stack Developer
+                    </h2>
+
+                    <p className="text-gray-600 dark:text-gray-400 text-lg leading-relaxed">
+                        5 yıllık deneyimimle web ve mobil uygulama geliştirme konusunda uzmanlaşmış bir geliştiriciyim.
+                        Modern teknolojileri kullanarak kullanıcı dostu ve ölçeklenebilir çözümler üretiyorum.
+                    </p>
+
+                    <div className="flex flex-col sm:flex-row gap-4">
+                        <Link
+                            to="contact"
+                            smooth={true}
+                            duration={500}
+                            className="inline-flex items-center px-6 py-3 rounded-lg bg-gradient-to-r from-purple-600 to-purple-800 dark:from-orange-400 dark:to-orange-600 text-white font-medium hover:from-purple-700 hover:to-purple-900 dark:hover:from-orange-500 dark:hover:to-orange-700 transition-all duration-300 cursor-pointer"
+                        >
+                            İletişime Geç
+                        </Link>
+                        <a
+                            href="/cv.pdf"
+                            target="_blank"
+                            className="inline-flex items-center px-6 py-3 rounded-lg border-2 border-purple-600 dark:border-orange-500 text-purple-600 dark:text-orange-500 font-medium hover:bg-purple-50 dark:hover:bg-orange-950/20 transition-all duration-300"
+                        >
+                            CV'mi İndir
+                        </a>
+                    </div>
+                </motion.div>
+
+                {/* Sağ Taraf - Profil Resmi */}
+                <motion.div className="relative w-full flex justify-center md:justify-end items-center">
+                    <div className="relative w-[280px] h-[280px] md:w-[384px] md:h-[384px]">
+                        <Image
+                            src={profilePic}
+                            alt="Onur TAŞDEMİR"
+                            fill
+                            className="object-cover rounded-full"
+                            priority
+                        />
+                    </div>
+                </motion.div>
             </div>
 
-            {/* Profil resmi */}
-            <div className="relative z-20">
-                <img
-                    src={profilePic.src}
-                    alt="Onur TAŞDEMİR"
-                    className="w-96 h-96 object-cover rounded-full shadow-lg"
-                />
-            </div>
+            {/* Scroll İndikatörü */}
+            <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 1 }}
+                className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
+            >
+                <Link
+                    to="skills"
+                    smooth={true}
+                    duration={500}
+                    className="cursor-pointer text-gray-400 hover:text-purple-600 dark:hover:text-orange-500 transition-colors duration-300"
+                >
+                    <FaMouse className="w-6 h-6 animate-bounce" />
+                </Link>
+            </motion.div>
         </section>
     );
 };

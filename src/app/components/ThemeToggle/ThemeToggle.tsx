@@ -77,7 +77,7 @@ const ThemeToggle = () => {
             <button
                 ref={ref}
                 onClick={() => toggleDarkMode(!isDarkMode)}
-                className="w-12 h-12 bg-white dark:bg-black rounded-full flex items-center justify-center"
+                className="w-12 h-12 bg-transparent rounded-full flex items-center justify-center"
             >
         <span
             key={isDarkMode ? 'moon' : 'sun'}
