@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { Link } from "react-scroll";
-import { FaMouse } from 'react-icons/fa';
+import { CiDesktopMouse2 } from "react-icons/ci";
 import profilePic from '@/app/assets/images/profile_pic.png';
 import { useEffect, useState } from 'react';
 
@@ -108,16 +108,9 @@ const Banner = () => {
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 1 }}
-                className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
+                className="absolute bottom-12 left-[50%] transform -translate-x-[50%] [transform:translate(-50%)_!important] hidden md:block"
             >
-                <Link
-                    to="skills"
-                    smooth={true}
-                    duration={500}
-                    className="cursor-pointer text-gray-400 hover:text-purple-600 dark:hover:text-orange-500 transition-colors duration-300"
-                >
-                    <FaMouse className="w-6 h-6 animate-bounce" />
-                </Link>
+                <CiDesktopMouse2 className="w-12 h-8 animate-bounce text-purple-600 dark:text-orange-500" />
             </motion.div>
         </section>
     );
