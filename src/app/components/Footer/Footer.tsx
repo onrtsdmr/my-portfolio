@@ -55,7 +55,6 @@ const Footer = () => {
 
     return (
         <footer className="bg-white dark:bg-black border-t border-gray-100 dark:border-gray-800">
-            <div className="absolute left-[-30%] w-1/2 h-1/2 rounded-full bg-[radial-gradient(circle_at_center,rgba(147,51,234,0.3),transparent_70%)] dark:bg-[radial-gradient(circle_at_center,rgba(249,115,22,0.3),transparent_70%)] hidden md:block" />
             <motion.div 
                 className="max-w-6xl mx-auto px-4 py-16"
                 variants={containerVariants}

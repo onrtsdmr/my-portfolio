@@ -17,7 +17,31 @@ const projects: ProjectType[] = [
     {
         title: "Portfolio Website",
         description: "Kişisel portfolyo websitesi. Next.js, TypeScript ve Tailwind CSS kullanılarak geliştirildi.",
-        image: "/projects/portfolio.png",
+        image: "https://picsum.photos/1024/1024",
+        technologies: ["Next.js", "TypeScript", "Tailwind CSS", "Framer Motion"],
+        githubLink: "https://github.com/yourusername/portfolio",
+        liveLink: "https://yourportfolio.com"
+    },
+    {
+        title: "Portfolio Website",
+        description: "Kişisel portfolyo websitesi. Next.js, TypeScript ve Tailwind CSS kullanılarak geliştirildi.",
+        image: "https://picsum.photos/1024/1024",
+        technologies: ["Next.js", "TypeScript", "Tailwind CSS", "Framer Motion"],
+        githubLink: "https://github.com/yourusername/portfolio",
+        liveLink: "https://yourportfolio.com"
+    },
+    {
+        title: "Portfolio Website",
+        description: "Kişisel portfolyo websitesi. Next.js, TypeScript ve Tailwind CSS kullanılarak geliştirildi.",
+        image: "https://picsum.photos/1024/1024",
+        technologies: ["Next.js", "TypeScript", "Tailwind CSS", "Framer Motion"],
+        githubLink: "https://github.com/yourusername/portfolio",
+        liveLink: "https://yourportfolio.com"
+    },
+    {
+        title: "Portfolio Website",
+        description: "Kişisel portfolyo websitesi. Next.js, TypeScript ve Tailwind CSS kullanılarak geliştirildi.",
+        image: "https://picsum.photos/1024/1024",
         technologies: ["Next.js", "TypeScript", "Tailwind CSS", "Framer Motion"],
         githubLink: "https://github.com/yourusername/portfolio",
         liveLink: "https://yourportfolio.com"
